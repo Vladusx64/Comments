@@ -35,7 +35,6 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-// dd($request->all());
         $maxFile = 5120;
 
         $data = $request->validate([
@@ -55,7 +54,7 @@ class CommentController extends Controller
         Comment::create(\array_merge(
             $data, [
                 'email' =>$request->input('email'),
-                //'file_path' => 'DDSVSD'
+                'file_path' => 'DDSVSD'
             ]
         ));
       return redirect(route('form.create'));
