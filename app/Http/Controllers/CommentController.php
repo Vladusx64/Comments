@@ -14,8 +14,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        
-        return view('pages.index');
+        $comments = Comment::confirmed()->get();
+        return view('pages.index', ['comment' => $comments]);
     }
 
     /**
@@ -35,30 +35,39 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $maxFile = 5120;
-
+        $path = $request->file('file_path')->store('uploads', 'public');
+        $path = '/storage/' . $path;
         $data = $request->validate([
 
             'name' => 'required|max:200',
 
-           // 'email' => 'required|email',
+            'email' => 'required|email',
 
             'message' => 'required|max:400',
-
-          //  'file_path' => "file|$maxFile"
+            'file_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ]);
 
-    
+        Comment::create(\array_merge($data, ['file_path' => $path]));
 
-        Comment::create(\array_merge(
-            $data, [
-                'email' =>$request->input('email'),
-                'file_path' => 'DDSVSD'
-            ]
-        ));
-      return redirect(route('form.create'));
+        return redirect(route('form.create'));
     }
+
+
+    public function showAll()
+    {
+        $comments = Comment::new()->get();
+        $commentsConf = Comment::confirmed()->get();
+        $commentsBlock = Comment::blocked()->get();
+
+        return view('pages.new', [
+            'comments' => $comments,
+            'commentsConf' => $commentsConf,
+            'commentsBlock' => $commentsBlock,
+    ]);
+    }
+
+
 
     /**
      * Display the specified resource.
@@ -77,9 +86,32 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit($id)
     {
-        //
+        $comment = Comment::find($id);
+        if($comment){
+            $comment->status = 'confirmed';
+            $comment->save();
+        }
+        return redirect(route('showAll'));
+    }
+    public function blocked($id)
+    {
+        $comment = Comment::find($id);
+        if($comment){
+            $comment->status = 'blocked';
+            $comment->save();
+        }
+        return redirect(route('showAll'));
+    }
+    public function new($id)
+    {
+        $comment = Comment::find($id);
+        if($comment){
+            $comment->status = 'new';
+            $comment->save();
+        }
+        return redirect(route('showAll'));
     }
 
     /**
@@ -100,8 +132,9 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        //
+        Comment::destroy($id);
+        return redirect(route('showAll'));
     }
 }

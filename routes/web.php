@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'CommentController@index')->name('form.create');// Виводить форму для створення коммента
 Route::post('/', 'CommentController@store')->name('form.store'); //Зберігає комент
-Route::get('comments', 'CommentController@comments')->name('admin.comments');//Виводить список коментів
-//Route::get('update/{id}', 'CommentController@update')->name('admin.update');//Виводить форму для редагування комента
-Route::post('update_comment', 'CommentController@update_store')->name('admin.update_store');//Зберігає зміни внесені адміном
+
+Route::get('showall', 'CommentController@showAll')->name('showAll'); //модерування
+
+//операції для модерування
+Route::get('commetn/{id}', 'CommentController@edit')->name('form.edit'); 
+Route::get('commetn/blocked/{id}', 'CommentController@blocked')->name('form.blocked');
+Route::get('commetn/new/{id}', 'CommentController@new')->name('form.new');
+Route::get('commetn/delete/{id}', 'CommentController@destroy')->name('form.delete');

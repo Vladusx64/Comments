@@ -1,40 +1,30 @@
+<div class="container">
+    <div class="row">
 
-                      <div class="container">
-            <div class="row">
-                <div class="col-6">
-
-               <div> 
-                        <h6>John Doe  john@doe.com</h6>
-                        <p> 2021-07-13</p>
-                        <div class="row">
-                            <div class="col-8">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus distinctio dicta tempora quas nemo doloribus eaque, qui temporibus quaerat cupiditate.
-                                <br> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus distinctio dicta 
-                            </div>
-                            <div class="col-4">
-                                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFxUXFxcXFRUXFxcXFxUXFxcVFxcYHSggGB0lHRcXITEhJSkrLi4uFx8zODMtNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAQIFA//EACIQAQEBAAEDBAMBAAAAAAAAAAABETECYfBBUYHBIZHREv/EABYBAQEBAAAAAAAAAAAAAAAAAAADAv/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AO0UFGVgkAXBAACgUAAAAABBcADCAIKCGrgAi4AIoBAAFZwBSBQIYAAGAQACBQAACFAAAAAAAAACKgABQMCAGqm9gAAFQIBgaAUooIKgFAAAANMAAwgAFAAARQAAAAEVQBAAAAoAAAAFABaCUIAYAAQAAACgAtQAAABYAJgBAAIUhQBQEAAAAU1MAoUAMAAsDQAAAAKaAAYAQAFxUAQAAABUlIARKoKgAKgAQAMCAAFAKAAAAABCABQAyi/ACFVAAoBgAAQAAwAIAAABDQAAMAAwAAAAIAUoAB/rzQDVQAIFAhgAAAqAAqABgAECAAAAgKAAAAYYuAgEA+RQECgAAAAAYAKhAAANAAAlAAABQQwAAAAAAMBRPOVBAXQQAAAAKAAQAIAqACRQgCKAAAAAAAAQAIoM6pgBgAAEAA0ACgAoIUUEFxAAAApgKIAFIaBgACoAqAALva/qACBAVCqCAAAAAABQAIAAAAAAAAAFAAIAAAg0AgAKgAAAAAAAEAAXUAAABaCaKAgAAqAGBoCpi0EUAQFBCmAAAEAoCsqACAoAAEAAAEUAAFQUELAAAA/Ib2AUAC8JQBen7ZoAs/hFASJOABYl489wBZ9lUBlYAIvuACdSgHUKAk4S+igJ6tQATq5OkAeYAP/Z" alt="Письма мастера дзен">
-                            </div>
-                        </div>
+            <style >
+                img{
+                    width:640px;
+                    height:480px;
+                    object-fit: contain;
+                }
+            </style>
+        <div class="col-6">
+        @foreach($comment as $comments)
+            <div>
+                <h6>{{$comments->name}}</h6>
+                <p> {{$comments->updated_at}}</p>
+                <div class="row">
+                    <div class="col-8">
+                       {{$comments->message}}
                     </div>
-                    <hr>
-                    <div> 
-                        <h6>John Doe  john@doe.com</h6>
-                        <p> 2021-07-13</p>
-                        <div class="row">
-                            <div class="col-8">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus distinctio dicta tempora quas nemo doloribus eaque, qui temporibus quaerat cupiditate
-                                <br> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus distinctio dicta 
-                            </div>
-                            <div class="col-4">
-                                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFxUXFxcXFRUXFxcXFxUXFxcVFxcYHSggGB0lHRcXITEhJSkrLi4uFx8zODMtNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAQIFA//EACIQAQEBAAEDBAMBAAAAAAAAAAABETECYfBBUYHBIZHREv/EABYBAQEBAAAAAAAAAAAAAAAAAAADAv/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AO0UFGVgkAXBAACgUAAAAABBcADCAIKCGrgAi4AIoBAAFZwBSBQIYAAGAQACBQAACFAAAAAAAAACKgABQMCAGqm9gAAFQIBgaAUooIKgFAAAANMAAwgAFAAARQAAAAEVQBAAAAoAAAAFABaCUIAYAAQAAACgAtQAAABYAJgBAAIUhQBQEAAAAU1MAoUAMAAsDQAAAAKaAAYAQAFxUAQAAABUlIARKoKgAKgAQAMCAAFAKAAAAABCABQAyi/ACFVAAoBgAAQAAwAIAAABDQAAMAAwAAAAIAUoAB/rzQDVQAIFAhgAAAqAAqABgAECAAAAgKAAAAYYuAgEA+RQECgAAAAAYAKhAAANAAAlAAABQQwAAAAAAMBRPOVBAXQQAAAAKAAQAIAqACRQgCKAAAAAAAAQAIoM6pgBgAAEAA0ACgAoIUUEFxAAAApgKIAFIaBgACoAqAALva/qACBAVCqCAAAAAABQAIAAAAAAAAAFAAIAAAg0AgAKgAAAAAAAEAAXUAAABaCaKAgAAqAGBoCpi0EUAQFBCmAAAEAoCsqACAoAAEAAAEUAAFQUELAAAA/Ib2AUAC8JQBen7ZoAs/hFASJOABYl489wBZ9lUBlYAIvuACdSgHUKAk4S+igJ6tQATq5OkAeYAP/Z" alt="Письма мастера дзен">
-                            </div>
-                        </div>
+                    <div class="col-4">
+                        <img src="{{$comments->file_path}}" alt="Письма мастера дзен" >
                     </div>
-                    <hr>
-
-                    
-                </div>  
+                </div>
             </div>
+            <hr>
+            @endforeach
+            
         </div>
-                 
-                 
+    </div>
+</div>

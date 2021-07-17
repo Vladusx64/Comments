@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->text('message');
-            $table->string('file_path');
+            $table->string('file_path')->default("");
             $table->enum('status', ['new', 'confirmed','blocked'])->default('new');
             $table->timestamps();
         });

@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-6">
 
-                <form action="" method="post" class="form" name="myForm" onsubmit=" return validate()">
+                <form action="" method="post" class="form" name="myForm" enctype="multipart/form-data" onsubmit=" return validate()">
                   @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
@@ -21,7 +21,7 @@
                             <br> </br>
                          <div class="mb-3">
                                 <label for="formFile" class="form-label"></label>
-                                <input name="file_path" class="form-control" type="file" id="formFile">
+                                <input name="file_path" class="form-control" type="file" id="file_path">
                               </div>   
                           </div>
                           <div class="btn-group" role="group" aria-label="Basic example">
